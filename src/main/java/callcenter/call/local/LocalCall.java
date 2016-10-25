@@ -1,6 +1,7 @@
-package callcenter.call;
+package callcenter.call.local;
 
 import callcenter.Subscriber;
+import callcenter.call.Call;
 
 import java.util.Date;
 
