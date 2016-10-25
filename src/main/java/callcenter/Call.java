@@ -22,7 +22,8 @@ public class Call {
                 "Origen: " + source + "\n" +
                 "Destino: " + destination + "\n" +
                 "Hora de inicio: " + start + "\n" +
-                "Duración: " + durationSeconds + " segundos";
+                "Duración: " + durationSeconds + " segundos\n" +
+                "Coste: " + String.format("%.2f", getCost()) + " €";
     }
 
     public float getCost() {
@@ -38,7 +39,7 @@ public class Call {
     }
 
     private float calculateLocalCost() {
-        return LOCAL_CALL_COST_IN_CENTS_PER_SECOND * durationSeconds;
+        return LOCAL_CALL_COST_IN_CENTS_PER_SECOND * durationSeconds / 100.0f;
     }
 
     private float calculateProvincialCost() {
