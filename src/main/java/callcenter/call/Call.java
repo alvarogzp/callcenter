@@ -1,10 +1,10 @@
-package callcenter;
+package callcenter.call;
+
+import callcenter.Subscriber;
 
 import java.util.Date;
 
-public class Call {
-    private static final int LOCAL_CALL_COST_IN_CENTS_PER_SECOND = 15;
-
+public abstract class Call {
     public final Subscriber source;
     public final Subscriber destination;
     public final Date start;
@@ -17,6 +17,7 @@ public class Call {
         this.durationSeconds = durationSeconds;
     }
 
+    @Override
     public String toString() {
         return "Llamada.\n" +
                 "Origen: " + source + "\n" +
@@ -26,23 +27,5 @@ public class Call {
                 "Coste: " + String.format("%.2f", getCost()) + " €";
     }
 
-    public float getCost() {
-        if (isLocalCall()) {
-            return calculateLocalCost();
-        } else {
-            return calculateProvincialCost();
-        }
-    }
-
-    public boolean isLocalCall() {
-        return source.location == destination.location;
-    }
-
-    private float calculateLocalCost() {
-        return LOCAL_CALL_COST_IN_CENTS_PER_SECOND * durationSeconds / 100.0f;
-    }
-
-    private float calculateProvincialCost() {
-        return 0; // TODO taking into account the time frame when the call was done
-    }
+    public abstract float getCost();
 }

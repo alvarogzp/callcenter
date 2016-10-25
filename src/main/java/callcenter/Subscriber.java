@@ -11,6 +11,7 @@ public class Subscriber {
         this.location = location;
     }
 
+    @Override
     public String toString() {
         return name + " (" + location + ") [" + phoneNumber + "]";
     }

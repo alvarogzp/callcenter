@@ -1,25 +1,28 @@
 package callcenter;
 
+import callcenter.call.Call;
+import callcenter.call.CallFactory;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
 
 public class Main {
-    private static Subscriber pepe = new Subscriber("Pepe", "666555444", Location.BADAJOZ);
-    private static Subscriber manolo = new Subscriber("Manolo", "777666555", Location.GRANADA);
-    private static Subscriber juana = new Subscriber("Juana", "555666444", Location.BADAJOZ);
-    private static Subscriber maria = new Subscriber("María", "444555666", Location.GRANADA);
+    private Subscriber pepe = new Subscriber("Pepe", "666555444", Location.BADAJOZ);
+    private Subscriber manolo = new Subscriber("Manolo", "777666555", Location.GRANADA);
+    private Subscriber juana = new Subscriber("Juana", "555666444", Location.BADAJOZ);
+    private Subscriber maria = new Subscriber("María", "444555666", Location.GRANADA);
 
-    public static void main(String[] args) {
+    public void run() {
         List<Call> calls = new ArrayList<>();
 
-        calls.add(new Call(pepe, manolo, getDate(20, 15, 25), 300));
-        calls.add(new Call(juana, maria, getDate(10, 5, 5), 30));
-        calls.add(new Call(pepe, juana, getDate(22, 15, 25), 3000));
-        calls.add(new Call(maria, manolo, getDate(18, 15, 25), 3));
-        calls.add(new Call(manolo, juana, getDate(3, 15, 25), 30));
-        calls.add(new Call(maria, pepe, getDate(18, 15, 25), 300));
+        calls.add(call(pepe, manolo, date(20, 15, 25), 300));
+        calls.add(call(juana, maria, date(10, 5, 5), 30));
+        calls.add(call(pepe, juana, date(22, 15, 25), 3000));
+        calls.add(call(maria, manolo, date(18, 15, 25), 3));
+        calls.add(call(manolo, juana, date(3, 15, 25), 30));
+        calls.add(call(maria, pepe, date(18, 15, 25), 300));
 
         System.out.println("Total de llamadas: " + calls.size());
         System.out.println();
@@ -30,7 +33,15 @@ public class Main {
         }
     }
 
-    private static Date getDate(int hour, int minute, int seconds) {
+    private Call call(Subscriber source, Subscriber destination, Date start, long durationSeconds) {
+        return CallFactory.createCall(source, destination, start, durationSeconds);
+    }
+
+    private Date date(int hour, int minute, int seconds) {
         return new GregorianCalendar(2016, 10, 25, hour, minute, seconds).getTime();
+    }
+
+    public static void main(String[] args) {
+        new Main().run();
     }
 }
