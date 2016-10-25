@@ -17,6 +17,14 @@ public class Call {
         this.durationSeconds = durationSeconds;
     }
 
+    public String toString() {
+        return "Llamada.\n" +
+                "Origen: " + source + "\n" +
+                "Destino: " + destination + "\n" +
+                "Hora de inicio: " + start + "\n" +
+                "Duración: " + durationSeconds + " segundos";
+    }
+
     public float getCost() {
         if (isLocalCall()) {
             return calculateLocalCost();

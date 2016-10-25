@@ -10,4 +10,8 @@ public class Subscriber {
         this.phoneNumber = phoneNumber;
         this.location = location;
     }
+
+    public String toString() {
+        return name + " (" + location + ") [" + phoneNumber + "]";
+    }
 }

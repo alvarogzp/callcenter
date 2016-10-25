@@ -21,8 +21,12 @@ public class Main {
         calls.add(new Call(manolo, juana, getDate(3, 15, 25), 30));
         calls.add(new Call(maria, pepe, getDate(18, 15, 25), 300));
 
+        System.out.println("Total de llamadas: " + calls.size());
+        System.out.println();
+
         for (Call call : calls) {
             System.out.println(call.toString());
+            System.out.println();
         }
     }
 
